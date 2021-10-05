@@ -15,6 +15,9 @@ using namespace std;
 //11 : 50 rader
 // 16 :10 rader
 
+
+
+
 Operator::Operator(Node* const & lhs, Node* const & rhs):
     Node{}, opl{lhs}, opr{rhs}
 {
