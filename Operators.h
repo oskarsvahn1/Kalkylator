@@ -10,7 +10,7 @@ public:
   virtual double evaluate() = 0;
   virtual std::string postfix() = 0;
   virtual std::string infix() = 0;
-  virtual std::string prefix() = 0; 
+  virtual std::string prefix() = 0;
 
 };
 
@@ -19,12 +19,12 @@ class Operator: public Node
 {
 public:
 
-  Operator(Node* const & lhs, Node* const & rhs); // Adress till operanderna 
+  Operator(Node* const & lhs, Node* const & rhs); // Adress till operanderna
   std::string postfix() override;
   std::string infix() override;
   std::string prefix() override;
 
-  
+
 protected:
   virtual char token() = 0;
   Node* opl{};
@@ -88,7 +88,7 @@ public:
 
 };
 
-class Real : public Operand 
+class Real : public Operand
 {
 private:
   float x;
@@ -98,10 +98,10 @@ public:
   std::string infix() override;
   std::string prefix() override;
   double evaluate() override;
-  
+
 };
 
-class Integer : public Operand 
+class Integer : public Operand
 {
 private:
   int x;
