@@ -45,6 +45,11 @@ double Addition::evaluate()
     return opl->evaluate() + opr->evaluate();
 }
 
+double abs(double const a)
+{
+    return fabs(a);
+}
+
 Addition::Addition(Node* const & lhs, Node* const & rhs):
     Operator{lhs, rhs}
 {

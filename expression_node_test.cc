@@ -1,7 +1,7 @@
 #include <limits>
 #include <cmath> // abs
 #include <memory>
-#include "Operators2.h"
+#include "Operators.h"
 #include "Expression2.h"
 
 #include "catch.hpp"
@@ -42,6 +42,8 @@ TEST_CASE("test case ignoring rounding errors")
   Node* a = new Real{0.01};
   Node* b = new Real{0.09};
   Node* plus = new Addition{a, b};
+
+  CHECK( abs(-0.1) == 0.1 ); // make sure we use correct "abs"
 
   // CHECK( plus->evaluate() == 0.1 ); // Rounding error!!
   CHECK( compare_equal(plus->evaluate(), 0.1) );

@@ -1,7 +1,7 @@
 #include <string>
 
-#ifndef HEADERFILE_H
-#define HEADERFILE_H
+#ifndef EXPRESSION_H
+#define EXPRESSION_H
 
 class Node
 {

@@ -1,5 +1,6 @@
 #include <string>
 
+
 #ifndef HEADERFILE_H
 #define HEADERFILE_H
 
@@ -15,9 +16,9 @@ class Expression
     private:
 
         std::string expression{};
-        int* a{};
-        int* lhs{};
-        int* rhs{};
+        // Node* a{};
+        //Node* lhs{};
+        //Node* rhs{};
 
 
 };

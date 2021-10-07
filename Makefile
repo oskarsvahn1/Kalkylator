@@ -1,8 +1,12 @@
 CCC=g++ -std=c++17
 CFLAGS=-Wall -Wextra -pedantic
 
-main: test_main.o expression_node_test.o Operators2.o 
-	$(CCC) $(CFLAGS)  test_main.o expression_node_test.o Operators2.o Expression2.cc
+
+main: a.out
+
+
+a.out: test_main.o expression_node_test.o Operators.o postfix.o
+	$(CCC) $(CFLAGS)  test_main.o expression_node_test.o Operators.o Expression2.cc postfix.cc
 
 
 # test_main.o: test_main.cc
@@ -13,11 +17,13 @@ expression2.o: Expression2.cc
 expression_node_test.o: expression_node_test.cc
 	$(CCC) $(CFLAGS)  -c expression_node_test.cc
 
-Operators2.o: Operators2.cc
-	$(CCC) $(CFLAGS)  -c Operators2.cc
+postfix.o: postfix.cc
+	$(CCC) $(CFLAGS)  -c postfix.cc
 
-check: test_main.o expression_node_test.o Operators.cc
-	$(CCC) $(CFLAGS)  test_main.o expression_node_test.cc Operators.cc
+Operators.o: Operators.cc
+	$(CCC) $(CFLAGS)  -c Operators.cc
+
+check: a.out
 	./a.out
 
 clean:
