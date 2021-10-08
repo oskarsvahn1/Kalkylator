@@ -94,7 +94,7 @@ public:
 class Real : public Operand
 {
 private:
-  double x;
+  float x;
 public:
   Real(float r);
   std::string postfix() override;

@@ -1,5 +1,5 @@
 #include <string>
-
+#include "token.h"
 
 #ifndef HEADERFILE_H
 #define HEADERFILE_H
@@ -10,7 +10,11 @@ class Expression
 
         Expression(std::string e);
         Expression();
-        std::string to_string();
+        std::string to_prefix();
+        std::string to_postfix();
+        std::string to_infix();
+
+
         double evaluate();
     
     private:

@@ -57,11 +57,11 @@ TEST_CASE("infix to postfix conversion problems")
   CHECK_THROWS( Postfix("1 + 2 )") );
 }
 
-int main()
-{
-  Catch::Session session;
+// int main()
+// {
+//   Catch::Session session;
 
-  session.run();
+//   session.run();
   
-  return 0;
-}
+//   return 0;
+// }

@@ -4,6 +4,8 @@
 #include <algorithm>
 #include "Expression2.h"
 #include "Operators.h"
+#include "postfix.h"
+#include "token.h"
 #include <stack>
 
 using namespace std;
@@ -12,19 +14,17 @@ using namespace std;
 //Move to H-file when possible.
 stack<Node*> node_stack;
 
-
-
-
-
 Expression::Expression(string e):
     expression{e}
-{
-    string word{};
-    istringstream iss{expression};
+{   
+    node_stack.pop();
+    Postfix* postfix_string = new Postfix{e}; 
+    string postfx{postfix_string->to_string()};
+    istringstream iss{postfx};
+    Token word{};
 
     while(iss >> word)
     {
-
         if ( std::all_of( begin(word), end(word), ::isdigit ) )
         {
         // Vi har hittat ett heltal
@@ -43,40 +43,38 @@ Expression::Expression(string e):
             Node* a = new Variable{word};
             node_stack.push(a);
         }
-        else if (word.find_first_of("+-*/^") != std::string::npos)
+        else if (word.is_operator())
         {
             if(node_stack.size() < 2)
             {
-                throw logic_error("No guilty operator.");
-            
+                throw logic_error("No guilty operator2.");
             }
 
             Node* rhs = node_stack.top();
+            node_stack.pop();
             Node* lhs = node_stack.top();
             node_stack.pop();
-            node_stack.pop();
-            
             if (word == "+")
             {
                 Node* a = new Addition{lhs, rhs};
                 node_stack.push(a);
             }
-            if (word == "-")
+            else if (word == "-")
             {
                 Node* a = new Subtraction{lhs, rhs};
                 node_stack.push(a);
             }            
-            if (word == "*")
+            else if (word == "*")
             {
                 Node* a = new Multiplication{lhs, rhs};
                 node_stack.push(a);
             }            
-            if (word == "/")
+            else if (word == "/")
             {
                 Node* a = new Division{lhs, rhs};
                 node_stack.push(a);
             }
-            if (word == "^")
+            else if (word == "^")
             {
                 Node* a = new Exponentiation{lhs, rhs};
                 node_stack.push(a);
@@ -86,12 +84,11 @@ Expression::Expression(string e):
                 throw logic_error("No guilty operator.");
             }
         }
-
+        
     }   
-    
     if (node_stack.size() != 1)
     {
-        throw logic_error("Stack size not one in the end.");
+        throw logic_error("Stack size must be one in the end.");
 
     } 
 
@@ -107,4 +104,17 @@ Expression::Expression():
 double Expression::evaluate()
 {
     return node_stack.top()->evaluate();
+}
+
+string Expression::to_prefix()
+{
+    return node_stack.top()->prefix();
+}
+string Expression::to_postfix()
+{
+    return node_stack.top()->postfix();
+}
+string Expression::to_infix()
+{
+    return node_stack.top()->infix();
 }

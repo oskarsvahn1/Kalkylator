@@ -3,7 +3,7 @@
 #include <memory>
 #include "Operators.h"
 #include "Expression2.h"
-
+#define CATCH_CONFIG_RUNNER
 #include "catch.hpp"
 
 TEST_CASE("operand real")
@@ -113,6 +113,16 @@ TEST_CASE("not allowed divison/exponentiation")
     CHECK_THROWS(c->evaluate());
   }
 }
+TEST_CASE("Expression imput")
+{
+  Expression* a = new Expression("1.000 + 1");
+  SECTION("addition")
+  {
+    CHECK(a->evaluate() == 2);
+  }
+
+}
 #if 0 // Flytta ned denna rad för att aktivera nästa TEST_CASE
+
 
 #endif

@@ -6,7 +6,7 @@
 #include <stack>
 #include <map>
 #include <istream>
-
+#include <iostream>
 #include <sstream>
 #include <algorithm>
 #include <iterator>
@@ -23,7 +23,7 @@ std::string Postfix::to_string() const
 {
   std::ostringstream os;
   std::copy( std::begin(expr), std::end(expr),
-             std::ostream_iterator<std::string>{os, " "});
+             std::ostream_iterator<std::string>{os, ""});
   return os.str();
 }
 
@@ -68,8 +68,11 @@ Postfix::expression Postfix::make_postfix(std::istream& is, bool match_parenthes
   std::string token;
   int unused_operands{0};
 
+  // std::cout << token.to_string() <<std::endl;
+
   while (is >> token && token != ")"s )
   {
+
     if ( is_operator(token) )
     {
       while ( ! operator_stack.empty() && 
@@ -86,7 +89,7 @@ Postfix::expression Postfix::make_postfix(std::istream& is, bool match_parenthes
     {
       expression parentesis{ make_postfix(is, true) };
       std::copy( std::begin(parentesis), std::end(parentesis), std::back_inserter(postfix) );
-      unused_operands += 1; // entire postix is 1 operand
+      unused_operands += 1; // entire postix is 1 operand    
     }
     else
     {
@@ -122,8 +125,9 @@ Postfix::expression Postfix::make_postfix(std::istream& is, bool match_parenthes
     if ( unused_operands > 1 )
       throw Infix_Error{"Missing operator"};
     else
+
       throw Infix_Error{"Missing operand"};
   }
-    
+
   return postfix;
 }
