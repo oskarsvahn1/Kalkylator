@@ -16,6 +16,10 @@ using namespace std;
 // 16 :10 rader
 
 
+
+
+
+
 Operator::Operator(Node* const & lhs, Node* const & rhs):
     Node{}, opl{lhs}, opr{rhs}
 {
@@ -39,6 +43,11 @@ string Operator::prefix()
 double Addition::evaluate()
 {
     return opl->evaluate() + opr->evaluate();
+}
+
+double abs(double const a)
+{
+    return fabs(a);
 }
 
 Addition::Addition(Node* const & lhs, Node* const & rhs):

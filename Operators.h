@@ -1,7 +1,10 @@
 #include <string>
+#include "Expression2.h"
 
-#ifndef HEADERFILE_H
-#define HEADERFILE_H
+#ifndef OPERATORS_H
+#define OPERATORS_H
+
+double abs(double const a);
 
 class Node
 {

@@ -2,6 +2,8 @@
 #include <cmath> // abs
 #include <memory>
 #include "Operators.h"
+#include "Expression2.h"
+#define CATCH_CONFIG_RUNNER
 #include "catch.hpp"
 
 TEST_CASE("operand real")
@@ -40,6 +42,8 @@ TEST_CASE("test case ignoring rounding errors")
   Node* a = new Real{0.01};
   Node* b = new Real{0.09};
   Node* plus = new Addition{a, b};
+
+  CHECK( abs(-0.1) == 0.1 ); // make sure we use correct "abs"
 
   // CHECK( plus->evaluate() == 0.1 ); // Rounding error!!
   CHECK( compare_equal(plus->evaluate(), 0.1) );
@@ -109,6 +113,16 @@ TEST_CASE("not allowed divison/exponentiation")
     CHECK_THROWS(c->evaluate());
   }
 }
+TEST_CASE("Expression imput")
+{
+  Expression* a = new Expression("1.000 + 1");
+  SECTION("addition")
+  {
+    CHECK(a->evaluate() == 2);
+  }
+
+}
 #if 0 // Flytta ned denna rad för att aktivera nästa TEST_CASE
+
 
 #endif
