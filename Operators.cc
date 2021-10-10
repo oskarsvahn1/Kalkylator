@@ -15,22 +15,17 @@ using namespace std;
 //11 : 50 rader
 // 16 :10 rader
 
-
-
-
-
-
 Operator::Operator(Node* const & lhs, Node* const & rhs):
     Node{}, opl{lhs}, opr{rhs}
 {
 }
 
 
-Expression* Operand::clone() const
-{
-    Expression* e = new Integer{name};
-    return e;
-}
+// Expression* Operand::clone() const
+// {
+//     Expression* e = new Integer{name};
+//     return e;
+// }
 
 
 string Operator::postfix() 
@@ -68,10 +63,10 @@ char Addition::token()
     return '+';
 }
 
-Addition construct(Node* const & lhs, Node* const & rhs)
-{
-    return  Addition(lhs, rhs);
-}
+// Addition construct(Node* const & lhs, Node* const & rhs)
+// {
+//     return  Addition(lhs, rhs);
+// }
 
 
 Subtraction::Subtraction(Node* const & lhs, Node* const & rhs):
@@ -164,11 +159,11 @@ Integer::Integer(int i):
 {
 }
 
-Node* Integer::clone() const
-{
-    Node* e = new Integer{x};
-    return e;
-}
+// Node* Integer::clone() const
+// {
+//     Node* e = new Integer{x};
+//     return e;
+// }
 
 Real::Real(float r):
     Operand{}, x{r}
@@ -205,11 +200,11 @@ string Real::infix()
     return oss.str();
 }
 
-Node* Real::clone() const
-{
-    Node* e = new Real{x};
-    return e;
-}
+// Node* Real::clone() const
+// {
+//     Node* e = new Real{x};
+//     return e;
+// }
 
 string Variable::infix()
 {
@@ -241,11 +236,11 @@ Variable::Variable(string x):
 {
 }
 
-Node* Variable::clone() const
-{
-    Node* e = new Variable{x};
-    return e;
-}
+// Node* Variable::clone() const
+// {
+//     Node* e = new Variable{x};
+//     return e;
+// }
 
 double Real::evaluate()
 {

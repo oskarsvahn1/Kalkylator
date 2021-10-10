@@ -1,5 +1,5 @@
 #include <string>
-#include "Expression2.h"
+//#include "Expression2.h"
 
 #ifndef OPERATORS_H
 #define OPERATORS_H
@@ -14,7 +14,7 @@ public:
   virtual std::string postfix() = 0;
   virtual std::string infix() = 0;
   virtual std::string prefix() = 0;
-  virtual Node* clone() const;
+  // virtual Node* clone() const;
 
 };
 
@@ -44,7 +44,7 @@ public:
   Addition(Node* const & lhs, Node* const & rhs);
   double evaluate() override;
   // Addition construct(Node*, Node*);
-  Addition construct(Node* const & lhs, Node* const & rhs);
+  // Addition construct(Node* const & lhs, Node* const & rhs);
  
 protected:
   char token() override;
@@ -106,7 +106,7 @@ public:
   std::string infix() override;
   std::string prefix() override;
   double evaluate() override;
-  Node* clone() const override;
+  // Node* clone() const override;
 
 };
 
@@ -120,7 +120,7 @@ public:
   std::string infix() override;
   std::string prefix() override;
   double evaluate() override;
-  Node* clone() const override;
+  // Node* clone() const override;
 
 };
 
@@ -132,7 +132,7 @@ public:
     std::string postfix() override;
     std::string infix() override;
     std::string prefix() override;
-    Node* clone() const override;
+    // Node* clone() const override;
 
 
     double evaluate() override;

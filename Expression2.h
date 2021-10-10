@@ -1,5 +1,7 @@
 #include <string>
 #include "token.h"
+#include <stack>
+#include "Operators.h"
 
 #ifndef HEADERFILE_H
 #define HEADERFILE_H
@@ -20,6 +22,7 @@ class Expression
     private:
 
         std::string expression{};
+        //std::stack <Node*> node_stack;
         // Node* a{};
         //Node* lhs{};
         //Node* rhs{};

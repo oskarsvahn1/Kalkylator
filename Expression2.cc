@@ -9,10 +9,8 @@
 #include <stack>
 
 using namespace std;
-
-
-//Move to H-file when possible.
 stack<Node*> node_stack;
+
 
 Expression::Expression(string e):
     expression{e}
