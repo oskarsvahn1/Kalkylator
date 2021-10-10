@@ -25,6 +25,14 @@ Operator::Operator(Node* const & lhs, Node* const & rhs):
 {
 }
 
+
+Expression* Operand::clone() const
+{
+    Expression* e = new Integer{name};
+    return e;
+}
+
+
 string Operator::postfix() 
 {
     return opl->postfix() + " " + opr->postfix() + " " + token();
@@ -59,6 +67,12 @@ char Addition::token()
 {
     return '+';
 }
+
+Addition construct(Node* const & lhs, Node* const & rhs)
+{
+    return  Addition(lhs, rhs);
+}
+
 
 Subtraction::Subtraction(Node* const & lhs, Node* const & rhs):
     Operator{lhs, rhs}
@@ -150,6 +164,12 @@ Integer::Integer(int i):
 {
 }
 
+Node* Integer::clone() const
+{
+    Node* e = new Integer{x};
+    return e;
+}
+
 Real::Real(float r):
     Operand{}, x{r}
 {
@@ -185,6 +205,12 @@ string Real::infix()
     return oss.str();
 }
 
+Node* Real::clone() const
+{
+    Node* e = new Real{x};
+    return e;
+}
+
 string Variable::infix()
 {
     return x;
@@ -213,6 +239,12 @@ string Variable::prefix()
 Variable::Variable(string x):
     Operand{}, x{x}
 {
+}
+
+Node* Variable::clone() const
+{
+    Node* e = new Variable{x};
+    return e;
 }
 
 double Real::evaluate()

@@ -14,6 +14,7 @@ public:
   virtual std::string postfix() = 0;
   virtual std::string infix() = 0;
   virtual std::string prefix() = 0;
+  virtual Node* clone() const;
 
 };
 
@@ -26,6 +27,7 @@ public:
   std::string postfix() override;
   std::string infix() override;
   std::string prefix() override;
+
 
 
 protected:
@@ -41,6 +43,9 @@ public:
 
   Addition(Node* const & lhs, Node* const & rhs);
   double evaluate() override;
+  // Addition construct(Node*, Node*);
+  Addition construct(Node* const & lhs, Node* const & rhs);
+ 
 protected:
   char token() override;
 
@@ -101,6 +106,7 @@ public:
   std::string infix() override;
   std::string prefix() override;
   double evaluate() override;
+  Node* clone() const override;
 
 };
 
@@ -114,6 +120,7 @@ public:
   std::string infix() override;
   std::string prefix() override;
   double evaluate() override;
+  Node* clone() const override;
 
 };
 
@@ -125,6 +132,7 @@ public:
     std::string postfix() override;
     std::string infix() override;
     std::string prefix() override;
+    Node* clone() const override;
 
 
     double evaluate() override;

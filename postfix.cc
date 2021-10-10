@@ -23,7 +23,7 @@ std::string Postfix::to_string() const
 {
   std::ostringstream os;
   std::copy( std::begin(expr), std::end(expr),
-             std::ostream_iterator<std::string>{os, ""});
+             std::ostream_iterator<std::string>{os, " "});
   return os.str();
 }
 
@@ -65,7 +65,7 @@ Postfix::expression Postfix::make_postfix(std::istream& is, bool match_parenthes
   
   op_stack operator_stack;
   expression postfix;
-  std::string token;
+  Token token;
   int unused_operands{0};
 
   // std::cout << token.to_string() <<std::endl;
