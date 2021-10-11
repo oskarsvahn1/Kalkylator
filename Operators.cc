@@ -19,6 +19,19 @@ Operator::Operator(Node* const & lhs, Node* const & rhs):
     Node{}, opl{lhs}, opr{rhs}
 {
 }
+// Operator::~Operator()
+// {
+//     delete[] opl;
+//     delete opr;
+// }
+
+
+
+
+// Node* Operator::clone() 
+// {
+//     return this->construct(opl->clone(), opr->clone());
+// }
 
 
 // Expression* Operand::clone() const
@@ -53,6 +66,7 @@ double abs(double const a)
     return fabs(a);
 }
 
+
 Addition::Addition(Node* const & lhs, Node* const & rhs):
     Operator{lhs, rhs}
 {
@@ -63,10 +77,10 @@ char Addition::token()
     return '+';
 }
 
-// Addition construct(Node* const & lhs, Node* const & rhs)
-// {
-//     return  Addition(lhs, rhs);
-// }
+Node* Addition::construct(Node* const & lhs, Node* const & rhs)
+{
+    return new Addition(lhs, rhs);
+}
 
 
 Subtraction::Subtraction(Node* const & lhs, Node* const & rhs):
@@ -84,6 +98,10 @@ char Subtraction::token()
     return '-';
 }
 
+Node* Subtraction::construct(Node* const & lhs, Node* const & rhs)
+{
+    return new Subtraction(lhs, rhs);
+}
 
 Multiplication::Multiplication(Node* const & lhs, Node* const & rhs):
     Operator{lhs, rhs}
@@ -100,6 +118,10 @@ char Multiplication::token()
     return '*';
 }
 
+Node* Multiplication::construct(Node* const & lhs, Node* const & rhs)
+{
+    return new Multiplication(lhs, rhs);
+}
 
 Division::Division(Node* const & lhs, Node* const & rhs):
     Operator{lhs, rhs}
@@ -120,7 +142,10 @@ char Division::token()
     return '/';
 }
 
-
+Node* Division::construct(Node* const & lhs, Node* const & rhs)
+{
+    return new Division(lhs, rhs);
+}
 
 Exponentiation::Exponentiation(Node* const & lhs, Node* const & rhs):
     Operator{lhs, rhs}
@@ -147,6 +172,10 @@ char Exponentiation::token()
     return '^';
 }
 
+Node* Exponentiation::construct(Node* const & lhs, Node* const & rhs)
+{
+    return new Exponentiation(lhs, rhs);
+}
 
 
 Operand::Operand():
@@ -154,21 +183,30 @@ Operand::Operand():
 {
 }
 
+// Operand::~Operand()
+// {
+// }
+
+
 Integer::Integer(int i):
     Operand{}, x{i}
 {
 }
 
-// Node* Integer::clone() const
-// {
-//     Node* e = new Integer{x};
-//     return e;
-// }
-
 Real::Real(float r):
     Operand{}, x{r}
 {
 }
+
+// Node* Integer::clone()
+// {
+//     return new Integer{x};
+// }
+
+// Node* Real::clone() 
+// {
+//     return new Real{x};
+// }
 
 string Integer::postfix()
 {
@@ -200,11 +238,6 @@ string Real::infix()
     return oss.str();
 }
 
-// Node* Real::clone() const
-// {
-//     Node* e = new Real{x};
-//     return e;
-// }
 
 string Variable::infix()
 {
@@ -236,7 +269,7 @@ Variable::Variable(string x):
 {
 }
 
-// Node* Variable::clone() const
+// Node* Variable::clone() 
 // {
 //     Node* e = new Variable{x};
 //     return e;

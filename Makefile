@@ -35,5 +35,7 @@ uppgift14.o: uppgift14.cc
 check: a.out
 	./a.out
 
+clear: clean
+
 clean:
 	\rm *.o a.out

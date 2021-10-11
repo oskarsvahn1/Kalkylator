@@ -9,25 +9,29 @@ double abs(double const a);
 class Node
 {
 public:
-
+   Node() {};
+  //  ~Node() = default;
   virtual double evaluate() = 0;
   virtual std::string postfix() = 0;
   virtual std::string infix() = 0;
   virtual std::string prefix() = 0;
-  // virtual Node* clone() const;
+  //virtual Node* construct() = 0;
+
+  // virtual Node* clone() = 0;
 
 };
-
 
 class Operator: public Node
 {
 public:
 
   Operator(Node* const & lhs, Node* const & rhs); // Adress till operanderna
+  // ~Operator() ;
   std::string postfix() override;
   std::string infix() override;
   std::string prefix() override;
-
+  virtual Node* construct(Node* const & lhs, Node* const & rhs) = 0;
+  // Node* clone()  override;
 
 
 protected:
@@ -42,21 +46,23 @@ class Addition: public Operator
 public:
 
   Addition(Node* const & lhs, Node* const & rhs);
+  // ~Addition();
+
   double evaluate() override;
-  // Addition construct(Node*, Node*);
-  // Addition construct(Node* const & lhs, Node* const & rhs);
- 
+  Node* construct(Node* const & lhs, Node* const & rhs) override;
 protected:
   char token() override;
 
 };
 
-
 class Subtraction: public Operator
 {
 public:
   Subtraction(Node* const & lhs, Node* const & rhs);
+  // ~Subtraction();
+
   double evaluate() override;
+  Node* construct(Node* const & lhs, Node* const & rhs) override;
 protected:
   char token() override;
 };
@@ -65,7 +71,10 @@ class Multiplication: public Operator
 {
 public:
   Multiplication(Node* const & lhs, Node* const & rhs);
+  // ~Multiplication();
+
   double evaluate() override;
+  Node* construct(Node* const & lhs, Node* const & rhs) override;
 protected:
   char token() override;
 };
@@ -74,7 +83,9 @@ class Division: public Operator
 {
 public:
   Division(Node* const & lhs, Node* const & rhs);
+  // ~Division();
   double evaluate() override;
+  Node* construct(Node* const & lhs, Node* const & rhs) override;
 protected:
   char token() override;
 };
@@ -83,7 +94,9 @@ class Exponentiation: public Operator
 {
 public:
   Exponentiation(Node* const & lhs, Node* const & rhs);
+  // ~Exponentiation();
   double evaluate() override;
+  Node* construct(Node* const & lhs, Node* const & rhs) override;
 protected:
   char token() override;
 };
@@ -93,6 +106,8 @@ class Operand : public Node {
 
 public:
     Operand();
+    //~Operand() ;
+    //Node* clone()  override;
 
 };
 
@@ -106,7 +121,8 @@ public:
   std::string infix() override;
   std::string prefix() override;
   double evaluate() override;
-  // Node* clone() const override;
+  // Node* clone()  override;
+  // Node* clone() override;
 
 };
 
@@ -120,7 +136,8 @@ public:
   std::string infix() override;
   std::string prefix() override;
   double evaluate() override;
-  // Node* clone() const override;
+  // Node* clone()  override;
+  // Node* clone() override;
 
 };
 
@@ -132,8 +149,8 @@ public:
     std::string postfix() override;
     std::string infix() override;
     std::string prefix() override;
-    // Node* clone() const override;
-
+    // Node* clone()  override;
+    // Node* clone() override;
 
     double evaluate() override;
 

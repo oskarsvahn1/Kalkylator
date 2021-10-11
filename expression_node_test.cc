@@ -122,6 +122,11 @@ TEST_CASE("Expression imput")
   }
 
 }
+// TEST_CASE("clone")
+// {
+//   Expression* a = new Expression("1.000 + 1");
+//   Expression* b = a->clone();
+// }
 #if 0 // Flytta ned denna rad för att aktivera nästa TEST_CASE
 
 

@@ -9,7 +9,7 @@ using namespace std;
 
 int main() 
 {
-    Expression e{};
+    Expression* e{new Expression{}};
     string line;
     vector<Expression> exp_vec;
 
@@ -17,7 +17,7 @@ int main()
         if (line[0] != ':') {
 
             try{
-                Expression e{line};       
+                e = new Expression{line};       
             }
             catch (exception()) {
                 throw logic_error("Felaktigt inmatat uttryck, försök igen.");
@@ -26,32 +26,34 @@ int main()
         else{
             if (line == ":prefix")
             {
-                cout << e.to_prefix() << endl;
+                cout << e->to_prefix() << endl;
             }
             else if(line == ":postfix")
             {
-                cout << e.to_postfix() << endl;
+                cout << e->to_postfix() << endl;
             }
             else if(line == ":infix")
             {
-                cout << e.to_infix() << endl;
+                cout << e->to_infix() << endl;
             }
             else if(line == ":calc")
             {
-                cout << e.evaluate() << endl;
+                cout << e->evaluate() << endl;
             }
             else if(line == ":save")
             {
-                exp_vec.push_back(e);
+                exp_vec.push_back(*e);
             }
             else if(line == ":list")
             {
                 for (int i = 0; i < exp_vec.size(); i++)
                     cout << exp_vec[i].to_infix() <<endl;
             }
-            else if(line == ":activate N")
+            else if(line.substr(0, 10) == ":activate ")
             {
-                return 0;
+                int N = stoi(line.substr(10));
+                cout<<exp_vec[N].to_postfix()<<endl;
+                e = new Expression{exp_vec[N].to_postfix()};
             }
             else if(line == ":quit" || line == ":exit")
             {
