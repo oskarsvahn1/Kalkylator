@@ -17,7 +17,7 @@ public:
   virtual std::string prefix() = 0;
   //virtual Node* construct() = 0;
 
-  // virtual Node* clone() = 0;
+  virtual Node* clone() = 0;
 
 };
 
@@ -26,12 +26,12 @@ class Operator: public Node
 public:
 
   Operator(Node* const & lhs, Node* const & rhs); // Adress till operanderna
-  // ~Operator() ;
+  ~Operator() ;
   std::string postfix() override;
   std::string infix() override;
   std::string prefix() override;
   virtual Node* construct(Node* const & lhs, Node* const & rhs) = 0;
-  // Node* clone()  override;
+  Node* clone() override;
 
 
 protected:
@@ -106,7 +106,7 @@ class Operand : public Node {
 
 public:
     Operand();
-    //~Operand() ;
+    ~Operand() ;
     //Node* clone()  override;
 
 };
@@ -121,8 +121,7 @@ public:
   std::string infix() override;
   std::string prefix() override;
   double evaluate() override;
-  // Node* clone()  override;
-  // Node* clone() override;
+  Node* clone() override;
 
 };
 
@@ -136,8 +135,7 @@ public:
   std::string infix() override;
   std::string prefix() override;
   double evaluate() override;
-  // Node* clone()  override;
-  // Node* clone() override;
+  Node* clone() override;
 
 };
 
@@ -149,8 +147,7 @@ public:
     std::string postfix() override;
     std::string infix() override;
     std::string prefix() override;
-    // Node* clone()  override;
-    // Node* clone() override;
+    Node* clone() override;
 
     double evaluate() override;
 

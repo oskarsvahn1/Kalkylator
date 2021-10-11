@@ -19,19 +19,17 @@ Operator::Operator(Node* const & lhs, Node* const & rhs):
     Node{}, opl{lhs}, opr{rhs}
 {
 }
-// Operator::~Operator()
-// {
-//     delete[] opl;
-//     delete opr;
-// }
+Operator::~Operator()
+{
+    delete[] opl;
+    delete opr;
+}
 
 
-
-
-// Node* Operator::clone() 
-// {
-//     return this->construct(opl->clone(), opr->clone());
-// }
+Node* Operator::clone() 
+{
+     return this->construct(opl->clone(), opr->clone());
+}
 
 
 // Expression* Operand::clone() const
@@ -39,6 +37,7 @@ Operator::Operator(Node* const & lhs, Node* const & rhs):
 //     Expression* e = new Integer{name};
 //     return e;
 // }
+
 
 
 string Operator::postfix() 
@@ -183,9 +182,10 @@ Operand::Operand():
 {
 }
 
-// Operand::~Operand()
-// {
-// }
+Operand::~Operand()
+{
+}
+
 
 
 Integer::Integer(int i):
@@ -198,15 +198,15 @@ Real::Real(float r):
 {
 }
 
-// Node* Integer::clone()
-// {
-//     return new Integer{x};
-// }
+Node* Integer::clone()
+{
+     return new Integer{x};
+}
 
-// Node* Real::clone() 
-// {
-//     return new Real{x};
-// }
+Node* Real::clone() 
+{
+     return new Real{x};
+}
 
 string Integer::postfix()
 {
@@ -269,11 +269,11 @@ Variable::Variable(string x):
 {
 }
 
-// Node* Variable::clone() 
-// {
-//     Node* e = new Variable{x};
-//     return e;
-// }
+Node* Variable::clone() 
+{
+    Node* e = new Variable{x};
+    return e;
+}
 
 double Real::evaluate()
 {
