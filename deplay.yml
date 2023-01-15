@@ -1,0 +1,7 @@
+- uses: mkrakowitzer/actions-googledrive@master
+  with:
+    upload-from: ./tmp
+    upload-to: IRL-L2-Support/platform-architecture-docs
+    skicka-tokencache-json: ${{ secrets.FOO }}
+    google-client-id: ${{ secrets.BAR }}
+    google-client-secret: ${{ secrets.BAZ }}
